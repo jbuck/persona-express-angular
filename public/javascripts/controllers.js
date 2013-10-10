@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('aux.controllers', []).
+angular.module('pea.controllers', []).
   controller('AppCtrl', function ($scope, persona, $rootScope, $http, $location) {
     $rootScope.isAuthenticated = false;
 
@@ -29,6 +29,6 @@ angular.module('aux.controllers', []).
       persona.logout();
     }
   }).
-  controller('HomeCtrl', function ($scope, $http) {
-
+  controller('HomeCtrl', function ($scope, persona, $http) {
+    console.log('got here ', persona.login)
   });

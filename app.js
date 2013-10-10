@@ -7,8 +7,7 @@ var settings = require('./settings')(app, configurations, express);
 
 nconf.argv().env().file({ file: 'local.json' });
 
-/* Filters for routes */
-
+// Filters for routes
 var isLoggedIn = function(req, res, next) {
   if (req.session.email) {
     next();
@@ -19,10 +18,6 @@ var isLoggedIn = function(req, res, next) {
 
 require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
-});
-
-app.use(function(req, res) {
-  res.sendfile(__dirname + '/views/layout.jade');
 });
 
 // routes

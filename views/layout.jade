@@ -1,7 +1,7 @@
 !!! 5
-html(ng-app='aux')
+html(ng-app='pea')
   head
-    title aux
+    title Persona-Express-Angular
     meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
     meta(content='yes', name='apple-mobile-web-app-capable')
     meta(content='chrome=1', http-equiv='X-UA-Compatible')
@@ -10,6 +10,13 @@ html(ng-app='aux')
     link(rel='stylesheet', href='/stylesheets/main.css')
 
   body
+    #header
+      h1 Persona-Express-Angular
+      li(ng-if='isAuthenticated')
+        a(href='javascript:;', ng-click='logout()') Logout
+      li(ng-if='!isAuthenticated')
+        a(href='javascript:;', ng-click='login()') Sign in
+
     block content
     #footer
 

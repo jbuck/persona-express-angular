@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('aux', [
+angular.module('pea', [
   'ngRoute',
-  'aux.factories',
-  'aux.controllers'
+  'pea.factories',
+  'pea.controllers'
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      controller: 'HomeCtrl',
+      controller: 'AppCtrl',
       templateUrl: 'partials/home.html'
     })
     .otherwise({

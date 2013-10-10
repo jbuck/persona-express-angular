@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('aux.factories', []).
+angular.module('pea.factories', []).
   factory('persona', function ($rootScope, $http) {
     var login = function () {
       navigator.id.get(function (assertion) {
         if (!assertion) {
+          console.log('No assertion provided');
           return;
         }
 
