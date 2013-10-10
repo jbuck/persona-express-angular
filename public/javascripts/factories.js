@@ -24,7 +24,7 @@ angular.module('pea.factories', []).
               method: 'GET'
             }).success(function (data) {
 
-              $rootScope.userId = data.userId;
+              $rootScope.email = data.email;
             }).error(function (data) {
 
               console.log('Login failed because ' + data);
