@@ -30,5 +30,5 @@ angular.module('pea.controllers', []).
     }
   }).
   controller('HomeCtrl', function ($scope, persona, $http) {
-    console.log('got here ', persona.login)
+    console.log('home view');
   });
