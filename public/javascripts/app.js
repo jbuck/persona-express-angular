@@ -8,7 +8,7 @@ angular.module('pea', [
 config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      controller: 'AppCtrl',
+      controller: 'HomeCtrl',
       templateUrl: 'partials/home.html'
     })
     .otherwise({
