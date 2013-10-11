@@ -2,6 +2,11 @@
 
 angular.module('pea.factories', []).
   factory('persona', function ($rootScope, $http) {
+    var resetUser = function () {
+      localStorage.removeItem('personaEmail');
+      $rootScope.isAuthenticated = false;
+    };
+
     var login = function () {
       navigator.id.get(function (assertion) {
         if (!assertion) {
@@ -16,25 +21,28 @@ angular.module('pea.factories', []).
         }).success(function (data) {
 
           if (data.status === 'okay') {
-            localStorage.setItem('personaEmail', data.email);
-            $rootScope.isAuthenticated = true;
-
             $http({
               url: '/login',
               method: 'GET'
             }).success(function (data) {
 
+              localStorage.setItem('personaEmail', data.email);
+              $rootScope.isAuthenticated = true;
               $rootScope.email = data.email;
             }).error(function (data) {
 
-              console.log('Login failed because ' + data);
+              resetUser();
+              console.log('Login failed');
             });
           } else {
-            console.log('Login failed because ' + data.reason);
+
+            resetUser();
+            console.log('Login failed');
           }
         }).error(function (data) {
 
-          console.log('error logging in: ', data);
+          resetUser();
+          console.log('Login failed');
         });
       });
     };
@@ -46,10 +54,10 @@ angular.module('pea.factories', []).
       }).success(function (data) {
 
         if (data.status === 'okay') {
-          localStorage.removeItem('personaEmail');
-          $rootScope.isAuthenticated = false;
-          document.location.href = '/logout';
+
+          resetUser();
         } else {
+
           console.log('Logout failed because ' + data.reason);
         }
       }).error(function (data) {

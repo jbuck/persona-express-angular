@@ -5,17 +5,17 @@ angular.module('pea.controllers', []).
     $rootScope.isAuthenticated = false;
 
     if (localStorage.getItem('personaEmail')) {
-      $rootScope.isAuthenticated = true;
-
       if (!$rootScope.email) {
         $http({
           url: '/login',
           method: 'GET'
         }).success(function (data) {
 
+          $rootScope.isAuthenticated = true;
           $rootScope.email = data.email;
         }).error(function (data) {
 
+          localStorage.removeItem('personaEmail')
           console.log('Login failed because ' + data);
         });
       }

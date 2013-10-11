@@ -12,7 +12,8 @@ var isLoggedIn = function(req, res, next) {
   if (req.session.email) {
     next();
   } else {
-    res.redirect('/');
+    res.status(400);
+    next(new Error('Not logged in'));
   }
 };
 
